@@ -1,0 +1,401 @@
+.whatIDoSection {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  padding: clamp(4.5rem, 8vh, 6.25rem) 0 clamp(3rem, 7vh, 5rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(8, 8, 8, 0.14), rgba(8, 8, 8, 0.5)),
+    var(--what-i-do-bg) center / min(72rem, 53vw) auto no-repeat,
+    #0c0c0c;
+  animation: whatIDoPlanetDrift 12s ease-in-out infinite alternate;
+}
+
+.whatIDoSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(6rem, 15vh, 8.25rem),
+    rgba(183, 171, 152, 0.16) calc(clamp(6rem, 15vh, 8.25rem) + 1px),
+    transparent calc(clamp(6rem, 15vh, 8.25rem) + 2px)
+  );
+  opacity: 0.48;
+}
+
+.whatIDoSection::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 35%;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(8, 8, 8, 0.88));
+}
+
+.whatIDoInner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: clamp(1.8rem, 3.5vh, 2.6rem);
+}
+
+.whatIDoKicker {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: clamp(1.25rem, 14vw, 16.25rem);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: rgba(183, 171, 152, 0.32);
+  transform: translateY(0.5rem);
+  opacity: 0;
+  transition: color 900ms ease, opacity 700ms ease, transform 700ms ease;
+}
+
+.whatIDoSectionActive .whatIDoKicker {
+  color: var(--nav-active);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.whatIDoHeadline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--nav-active);
+  text-transform: uppercase;
+}
+
+.whatIDoWord {
+  position: relative;
+  display: grid;
+  min-height: clamp(6.35rem, 15.4vh, 8.35rem);
+  width: 100%;
+  grid-template-columns: clamp(1.25rem, 9vw, 10rem) minmax(clamp(11rem, 20vw, 22rem), 0.68fr) minmax(22rem, 0.9fr) clamp(1.25rem, 8vw, 8rem);
+  column-gap: clamp(1.25rem, 4vw, 5rem);
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(183, 171, 152, 0.14);
+  cursor: default;
+  outline: none;
+  transition: border-color 360ms ease, color 360ms ease;
+}
+
+.whatIDoWord:last-child {
+  border-bottom: 1px solid rgba(183, 171, 152, 0.14);
+}
+
+.whatIDoIndex {
+  display: none;
+}
+
+.whatIDoShortLabel {
+  display: none;
+}
+
+.whatIDoWordMark,
+.whatIDoWordText,
+.whatIDoWordCode,
+.whatIDoWordTextHover {
+  display: block;
+  transition:
+    color 260ms ease,
+    opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow 260ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.whatIDoWordMark {
+  grid-column: 2;
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  min-height: 0.82em;
+}
+
+.whatIDoWordText,
+.whatIDoWordCode {
+  color: rgba(183, 171, 152, 0.18);
+  font-size: clamp(3.55rem, 6.8vw, 7.25rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.whatIDoWordText {
+  transform-origin: left center;
+  transform: translateX(-0.5rem);
+}
+
+.whatIDoSectionActive .whatIDoWordText {
+  color: rgba(183, 171, 152, 0.9);
+  text-shadow: 0 0 1.5rem rgba(183, 171, 152, 0.08);
+  transform: translateX(0);
+}
+
+.whatIDoSectionActive .whatIDoWord:nth-child(1) .whatIDoWordText {
+  transition-delay: 80ms;
+}
+
+.whatIDoSectionActive .whatIDoWord:nth-child(2) .whatIDoWordText {
+  transition-delay: 160ms;
+}
+
+.whatIDoSectionActive .whatIDoWord:nth-child(3) .whatIDoWordText {
+  transition-delay: 240ms;
+}
+
+.whatIDoSectionActive .whatIDoWord:nth-child(4) .whatIDoWordText {
+  transition-delay: 320ms;
+}
+
+.whatIDoSectionActive .whatIDoWord:nth-child(5) .whatIDoWordText {
+  transition-delay: 400ms;
+}
+
+.whatIDoWordCode {
+  position: absolute;
+  inset: 0 auto auto 0;
+  color: #050505;
+  transform: translateY(34%) scale(0.82);
+  opacity: 0;
+}
+
+.whatIDoWordTextHover {
+  grid-column: 3;
+  position: relative;
+  z-index: 1;
+  max-width: 38rem;
+  transform: translateY(0.85rem);
+  color: #0b0c0f;
+  font-size: clamp(0.92rem, 1.15vw, 1.15rem);
+  font-weight: 850;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0;
+}
+
+@media (min-width: 992px) {
+  .whatIDoKicker {
+    padding-inline: clamp(1.75rem, 9vw, 10rem);
+  }
+
+  .whatIDoWord {
+    grid-template-columns: clamp(1.75rem, 4.8vw, 5.6rem) minmax(clamp(11rem, 20vw, 22rem), 0.68fr) minmax(22rem, 0.9fr) clamp(1.25rem, 8vw, 8rem);
+  }
+
+  .whatIDoWordMark {
+    padding-left: 0.45rem;
+    margin-left: -0.45rem;
+  }
+}
+
+.whatIDoWord::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 112, 73, 0.38) 8%, var(--accent) 20%, var(--accent) 80%, rgba(255, 112, 73, 0.38) 92%, transparent),
+    var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.whatIDoWord:hover,
+.whatIDoWord:focus-visible {
+  border-color: rgba(235, 89, 57, 0.95);
+  color: #0b0c0f;
+}
+
+.whatIDoWord:hover::before,
+.whatIDoWord:focus-visible::before,
+.whatIDoWord.is-selected::before {
+  transform: scaleY(1);
+}
+
+.whatIDoWord:hover .whatIDoWordText,
+.whatIDoWord:focus-visible .whatIDoWordText {
+  color: #050505;
+  text-shadow: none;
+  transform: translateX(0) translateY(-34%) scale(0.82);
+  opacity: 0;
+  transition-delay: 0ms;
+}
+
+.whatIDoWord:hover .whatIDoWordCode,
+.whatIDoWord:focus-visible .whatIDoWordCode {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.whatIDoWord:hover .whatIDoWordTextHover,
+.whatIDoWord:focus-visible .whatIDoWordTextHover,
+.whatIDoWord.is-selected .whatIDoWordTextHover {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+  .whatIDoSection {
+    min-height: auto;
+    padding-block: 5rem;
+    background-size: auto, min(54rem, 108vw) auto, auto;
+  }
+
+  .whatIDoWord {
+    min-height: clamp(5.4rem, 12vw, 7rem);
+    grid-template-columns: clamp(1rem, 7vw, 4.5rem) minmax(8rem, 0.7fr) minmax(14rem, 1fr) clamp(1rem, 4vw, 3rem);
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .whatIDoWordText,
+  .whatIDoWordCode {
+    font-size: clamp(2.45rem, 6.6vw, 4.55rem);
+  }
+
+  .whatIDoWordTextHover {
+    max-width: min(28rem, 42vw);
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .whatIDoSection {
+    padding-block: 3.75rem 4.5rem;
+    background:
+      linear-gradient(rgba(8, 8, 8, 0.22), rgba(8, 8, 8, 0.68)),
+      var(--what-i-do-bg) center / min(44rem, 132vw) auto no-repeat,
+      #0c0c0c;
+    animation: none;
+  }
+
+  .whatIDoKicker {
+    padding-inline: 1rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.34em;
+  }
+
+  .whatIDoWord {
+    min-height: auto;
+    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
+    align-items: start;
+    padding-block: 1.15rem;
+  }
+
+  .whatIDoWordMark {
+    grid-column: 2;
+    min-height: 3.35rem;
+  }
+
+  .whatIDoWordText,
+  .whatIDoWordCode {
+    white-space: normal;
+    font-size: clamp(2.1rem, 12.8vw, 3.35rem);
+    line-height: 0.88;
+  }
+
+  .whatIDoWordCode {
+    white-space: nowrap;
+  }
+
+  .whatIDoWordTextHover {
+    top: auto;
+    grid-column: 2;
+    grid-row: 2;
+    right: auto;
+    bottom: 1rem;
+    left: auto;
+    max-width: none;
+    margin-top: 0.7rem;
+    transform: none;
+    font-size: 0.88rem;
+    line-height: 1.28;
+    opacity: 1;
+    color: rgba(239, 232, 219, 0.82);
+  }
+
+  .whatIDoIndex,
+  .whatIDoShortLabel {
+    display: none;
+  }
+
+  .whatIDoWord:hover .whatIDoWordText,
+  .whatIDoWord:focus-visible .whatIDoWordText {
+    color: rgba(183, 171, 152, 0.9);
+    opacity: 1;
+    transform: none;
+  }
+
+  .whatIDoWord:hover .whatIDoWordCode,
+  .whatIDoWord:focus-visible .whatIDoWordCode {
+    opacity: 0;
+  }
+
+  .whatIDoWord:hover::before,
+  .whatIDoWord:focus-visible::before,
+  .whatIDoWord.is-selected::before {
+    transform: scaleX(1);
+    opacity: 0.88;
+  }
+
+  .whatIDoWord.is-selected .whatIDoWordText,
+  .whatIDoWord.is-selected .whatIDoWordCode,
+  .whatIDoWord.is-selected .whatIDoWordTextHover {
+    color: #050505;
+  }
+
+  .whatIDoWord.is-selected .whatIDoWordText {
+    text-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatIDoSection {
+    animation: none;
+  }
+
+  .whatIDoKicker,
+  .whatIDoWord,
+  .whatIDoWordMark,
+  .whatIDoWordText,
+  .whatIDoWordCode,
+  .whatIDoWordTextHover,
+  .whatIDoWord::before {
+    transition: none;
+  }
+
+  .whatIDoWordText,
+  .whatIDoKicker {
+    transform: none;
+  }
+}
+
+@keyframes whatIDoPlanetDrift {
+  from {
+    background-position:
+      center,
+      center calc(50% - 0.85rem),
+      center;
+  }
+
+  to {
+    background-position:
+      center,
+      center calc(50% + 0.85rem),
+      center;
+  }
+}

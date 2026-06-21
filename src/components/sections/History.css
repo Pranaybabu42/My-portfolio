@@ -1,0 +1,379 @@
+.historySection {
+  position: relative;
+  display: flex;
+  min-height: 84svh;
+  align-items: flex-start;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(5, 5, 5, 0.38), #080808 16%, #080808 100%),
+    var(--history-bg) top right / min(54rem, 52vw) auto no-repeat,
+    #080808;
+  color: var(--nav-active);
+}
+
+.historySection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 8, 8, 0.18), rgba(8, 8, 8, 0.72)),
+    var(--history-cups-bg) left top / min(18rem, 22vw) auto no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.24;
+  filter: grayscale(1) sepia(0.18) saturate(0.78) contrast(1.12) brightness(1.24);
+}
+
+.historySection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent clamp(7.2rem, 16vh, 9.4rem),
+      rgba(183, 171, 152, 0.14) calc(clamp(7.2rem, 16vh, 9.4rem) + 1px),
+      transparent calc(clamp(7.2rem, 16vh, 9.4rem) + 2px)
+    ),
+    linear-gradient(180deg, transparent 58%, rgba(5, 5, 5, 0.9)),
+    var(--history-keyboard-bg) calc(100% + min(9rem, 12vw)) calc(100% + min(5rem, 8vw)) / min(24rem, 30vw) auto no-repeat;
+  background-blend-mode: normal, normal, screen;
+  opacity: 0.52;
+  filter: brightness(1.16);
+}
+
+.historyInner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: clamp(4.5rem, 8vh, 6rem) 0 clamp(3rem, 6vh, 4.5rem);
+}
+
+.historyKicker {
+  margin: 0 0 clamp(2.8rem, 7vh, 4.4rem);
+  padding-inline: clamp(1.25rem, 14vw, 16.25rem);
+  color: rgba(183, 171, 152, 0.3);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.52em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  transform: translateY(0.5rem);
+  opacity: 0;
+  transition: color 900ms ease, opacity 700ms ease, transform 700ms ease;
+}
+
+.historySectionActive .historyKicker {
+  color: var(--nav-active);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.historyRows {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.historyRow {
+  position: relative;
+  display: grid;
+  min-height: clamp(7.4rem, 16vh, 9.5rem);
+  width: 100%;
+  grid-template-columns: clamp(1.25rem, 9vw, 10rem) minmax(8rem, 0.34fr) minmax(18rem, 0.55fr) minmax(18rem, 0.72fr) clamp(1.25rem, 8vw, 8rem);
+  column-gap: clamp(1.25rem, 4vw, 5rem);
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(183, 171, 152, 0.14);
+  cursor: default;
+  outline: none;
+}
+
+.historyRow:last-child {
+  border-bottom: 1px solid rgba(183, 171, 152, 0.14);
+}
+
+.historyRow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 112, 73, 0.38) 8%, var(--accent) 20%, var(--accent) 80%, rgba(255, 112, 73, 0.38) 92%, transparent),
+    var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.historyYear,
+.historyRoleWrap,
+.historySummary {
+  position: relative;
+  z-index: 1;
+}
+
+.historyYear {
+  grid-column: 2;
+  color: rgba(183, 171, 152, 0.2);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0;
+  transform: translateX(-0.4rem);
+  transition:
+    color 760ms ease,
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.historySectionActive .historyYear {
+  color: rgba(183, 171, 152, 0.88);
+  transform: translateX(0);
+}
+
+.historyRoleWrap {
+  grid-column: 3;
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.historyRole,
+.historyCode,
+.historyPlace,
+.historySummary {
+  display: block;
+  transition:
+    color 760ms ease,
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.historyRole,
+.historyCode {
+  color: rgba(183, 171, 152, 0.2);
+  font-size: clamp(2.05rem, 3.6vw, 3.4rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.historyRole {
+  transform: translateY(0.35rem);
+}
+
+.historySectionActive .historyRole {
+  color: rgba(183, 171, 152, 0.9);
+  transform: translateY(0);
+}
+
+.historyCode {
+  position: absolute;
+  inset: 0 auto auto 0;
+  color: #050505;
+  transform: translateY(34%) scale(0.82);
+  opacity: 0;
+}
+
+.historyPlace {
+  color: rgba(183, 171, 152, 0.68);
+  font-size: clamp(0.95rem, 1.2vw, 1.12rem);
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.historySummary {
+  grid-column: 4;
+  max-width: 42rem;
+  color: #0b0c0f;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  font-weight: 850;
+  line-height: 1.35;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translateY(0.85rem);
+}
+
+.historyRow:hover,
+.historyRow:focus-visible {
+  border-color: rgba(235, 89, 57, 0.95);
+}
+
+.historyRow:hover::before,
+.historyRow:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.historyRow:hover .historyYear,
+.historyRow:focus-visible .historyYear,
+.historyRow:hover .historyPlace,
+.historyRow:focus-visible .historyPlace {
+  color: #050505;
+}
+
+.historyRow:hover .historyRole,
+.historyRow:focus-visible .historyRole {
+  color: #050505;
+  transform: translateY(-34%) scale(0.82);
+  opacity: 0;
+}
+
+.historyRow:hover .historyCode,
+.historyRow:focus-visible .historyCode {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.historyRow:hover .historySummary,
+.historyRow:focus-visible .historySummary {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 991.98px) {
+  .historySection {
+    min-height: auto;
+    background-size: auto, min(46rem, 94vw) auto, auto;
+  }
+
+  .historySection::before {
+    background-size: auto, min(14rem, 34vw) auto;
+  }
+
+  .historySection::after {
+    background-position: 0 0, 0 0, calc(100% + min(7rem, 14vw)) calc(100% + min(4rem, 9vw));
+    background-size: auto, auto, min(19rem, 42vw) auto;
+  }
+
+  .historyRow {
+    min-height: clamp(6.3rem, 13vw, 7.4rem);
+    grid-template-columns: clamp(1rem, 7vw, 4.5rem) minmax(6.5rem, 0.32fr) minmax(13rem, 0.68fr) minmax(14rem, 1fr) clamp(1rem, 4vw, 3rem);
+    column-gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .historyYear {
+    font-size: clamp(2rem, 5.5vw, 3rem);
+  }
+
+  .historyRole,
+  .historyCode {
+    font-size: clamp(1.8rem, 5.2vw, 3rem);
+  }
+
+  .historySummary {
+    max-width: min(30rem, 42vw);
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .historySection {
+    min-height: 100svh;
+    background:
+      linear-gradient(180deg, rgba(5, 5, 5, 0.5), #080808 22%, #080808 100%),
+      var(--history-bg) center 1.5rem / min(28rem, 92vw) auto no-repeat,
+      #080808;
+  }
+
+  .historySection::before {
+    background-size: auto, min(11rem, 48vw) auto;
+    opacity: 0.18;
+  }
+
+  .historySection::after {
+    background-position: 0 0, 0 0, center calc(100% + 2rem);
+    background-size: auto, auto, min(16rem, 64vw) auto;
+    opacity: 0.44;
+  }
+
+  .historyInner {
+    min-height: 100svh;
+    padding-block: 3.75rem 4.5rem;
+  }
+
+  .historyKicker {
+    margin-bottom: 2rem;
+    padding-inline: 1rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.34em;
+  }
+
+  .historyRow {
+    min-height: clamp(9.4rem, 25svh, 11.25rem);
+    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
+    align-items: start;
+    padding-block: 1.15rem;
+  }
+
+  .historyKicker,
+  .historyYear,
+  .historyRole,
+  .historySummary {
+    transform: none;
+  }
+
+  .historyYear,
+  .historyRoleWrap,
+  .historySummary {
+    grid-column: 2;
+  }
+
+  .historyYear {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .historyRoleWrap {
+    margin-top: 0.8rem;
+  }
+
+  .historyRole,
+  .historyCode {
+    font-size: clamp(1.85rem, 10vw, 3rem);
+    line-height: 0.95;
+  }
+
+  .historySummary {
+    grid-row: 3;
+    max-width: none;
+    margin-top: 0.85rem;
+    overflow: hidden;
+    color: rgba(183, 171, 152, 0.72);
+    font-size: 0.84rem;
+    line-height: 1.3;
+    opacity: 1;
+    transform: none;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .historyRow:hover .historyRole,
+  .historyRow:focus-visible .historyRole {
+    opacity: 1;
+    transform: none;
+  }
+
+  .historyRow:hover .historyCode,
+  .historyRow:focus-visible .historyCode {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .historyKicker,
+  .historyRow::before,
+  .historyYear,
+  .historyRole,
+  .historyCode,
+  .historyPlace,
+  .historySummary {
+    transition: none;
+  }
+}

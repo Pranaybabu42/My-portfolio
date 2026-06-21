@@ -1,0 +1,72 @@
+.site-container {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-container::before,
+.site-container::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.site-container::before {
+  inset: -2.25rem 0;
+  border-inline: 1px solid rgba(183, 171, 152, 0.08);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(235, 89, 57, 0.09), transparent 18rem),
+    radial-gradient(circle at 92% 72%, rgba(183, 171, 152, 0.07), transparent 20rem),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.018));
+  opacity: 0.95;
+}
+
+.site-container::after {
+  inset: -2.25rem 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(235, 89, 57, 0.34), rgba(183, 171, 152, 0.56), transparent);
+  box-shadow: 0 0 1.45rem rgba(235, 89, 57, 0.28);
+  animation: siteContainerRail 6.5s ease-in-out infinite alternate;
+}
+
+.site-container > * {
+  position: relative;
+}
+
+.site-container--plain::before,
+.site-container--plain::after {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .site-container::before {
+    inset: -1.5rem 0;
+    border-inline-color: rgba(183, 171, 152, 0.05);
+    background:
+      radial-gradient(circle at 10% 14%, rgba(235, 89, 57, 0.07), transparent 14rem),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.012), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.012));
+  }
+
+  .site-container::after {
+    inset-block: -1.5rem;
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-container::after {
+    animation: none;
+  }
+}
+
+@keyframes siteContainerRail {
+  0% {
+    opacity: 0.45;
+    transform: translateY(-0.65rem) scaleX(0.74);
+  }
+
+  100% {
+    opacity: 0.95;
+    transform: translateY(0.65rem) scaleX(1);
+  }
+}

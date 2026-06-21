@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "miro": {
+      "command": "[TODO: node]",
+      "args": [
+        "[TODO: ./scripts/miro-mcp-server.js]"
+      ],
+      "env": {
+        "MIRO_ACCESS_TOKEN": "[TODO: your-miro-access-token]"
+      }
+    }
+  }
+}

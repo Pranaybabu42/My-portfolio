@@ -1,0 +1,206 @@
+.aboutHeroSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 100vh;
+  padding: clamp(5rem, 8vw, 7rem) 1rem;
+  overflow: hidden;
+  background-color: black;
+}
+
+.aboutSafeRight {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 90rem);
+  padding-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .aboutSafeRight {
+    padding-right: 6.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .aboutSafeRight {
+    padding-right: 7.5rem;
+  }
+}
+
+.aboutHero {
+  position: relative;
+  z-index: 2;
+  min-height: clamp(520px, 74vh, 760px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  gap: 1.25rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.aboutHeroKicker,
+.aboutHeroHeadline {
+  margin: 0;
+}
+
+.aboutHeroKicker {
+  width: min(100%, 66rem);
+  align-self: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.52em;
+  font-weight: 800;
+  color:var(--nav-active);
+  opacity: 1;
+  text-align: left;
+  text-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.65);
+}
+
+.aboutHeroHeadlineWrap {
+  --about-x: 280px;
+  --about-y: 145px;
+  --about-radius: 132px;
+  position: relative;
+  width: min(100%, 66rem);
+  min-height: clamp(13.5rem, 22vw, 25rem);
+  margin-left: 0;
+  cursor: none;
+  outline: none;
+}
+
+.aboutHeroHeadlineWrap:focus-visible {
+  outline: 2px solid rgba(235, 89, 57, 0.82);
+  outline-offset: 0.75rem;
+}
+
+.aboutHeroHeadline {
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.04;
+  color: #b7ab98;
+  max-width: 24ch;
+  font-size: clamp(3.25rem, 5.35vw, 6.15rem);
+  text-align: center;
+  text-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.76);
+}
+
+.aboutHeroHeadline::first-letter {
+  margin-left: 0;
+}
+
+.aboutHeroAccent {
+  color: #ce5e40;
+}
+
+.aboutTypingCaret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.9em;
+  margin-left: 0.06em;
+  vertical-align: -0.08em;
+  background: currentColor;
+  animation: aboutCaretBlink 1s steps(1, end) infinite;
+}
+
+@keyframes aboutCaretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.aboutHeroReveal {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  clip-path: circle(0 at var(--about-x) var(--about-y));
+  transition: clip-path 28ms linear;
+  will-change: clip-path;
+}
+
+.aboutHeroHeadlineWrap.is-hovering .aboutHeroReveal,
+.aboutHeroHeadlineWrap:focus-visible .aboutHeroReveal {
+  clip-path: circle(var(--about-radius) at var(--about-x) var(--about-y));
+}
+
+.aboutHeroRevealDot {
+  position: absolute;
+  inset: 0;
+  background: #eb5939;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 0 4rem rgba(0, 0, 0, 0.16);
+}
+
+.aboutHeroHeadlineAlt {
+  z-index: 2;
+  color: #050505;
+  text-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .aboutHeroSection {
+    height: auto;
+    min-height: min(45rem, 100svh);
+    padding: 4.25rem 1rem 5rem;
+  }
+
+  .aboutHero {
+    min-height: auto;
+    justify-content: center;
+  }
+
+  .aboutHeroHeadline {
+    max-width: 18ch;
+    font-size: clamp(2.35rem, 11vw, 3.65rem);
+    line-height: 1.06;
+  }
+
+  .aboutHeroHeadlineWrap {
+    width: min(100%, 26rem);
+    min-height: clamp(16rem, 68vw, 22rem);
+    margin-left: 0;
+  }
+
+  .aboutHeroHeadline::first-letter {
+    margin-left: 0;
+  }
+
+  .aboutHeroKicker {
+    width: min(100%, 26rem);
+    letter-spacing: 0.34em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutHero {
+    min-height: auto;
+  }
+
+  .aboutHeroReveal {
+    transition: none;
+  }
+
+  .aboutTypingCaret {
+    animation: none;
+  }
+
+}

@@ -1,0 +1,359 @@
+{
+  "experience": [
+    {
+      "company": "Endava",
+      "role": "Machine Learning Engineer",
+      "period": "Jan 2026 - Present",
+      "location": "India",
+      "employmentType": "Full-time",
+      "careerTrack": "Endava promotion path",
+      "careerTrackSummary": "",
+      "careerLevel": "Level 3",
+      "careerStage": "Current role",
+      "description": [
+        "Developed compliance and payments platforms for regulatory workflows, payment operations, document access, and internal process automation using Java 17, Spring Boot, React.js, REST APIs, gRPC, and microservices architecture.",
+        "Built compliance risk prediction and policy intelligence features using XGBoost models, RAG pipelines, document retrieval, policy search, and source-grounded response generation.",
+        "Designed secure and low-latency compliance backend services using Azure Service Bus, Redis, Azure Key Vault, PostgreSQL, idempotent APIs, PII-safe processing, response validation, and 300 ms response-time optimization.",
+        "Developed healthcare policy and claims applications using Python, FastAPI, ChromaDB, Qdrant, embeddings, semantic chunking, and metadata filtering for chatbot-based policy lookup, claim checking, and claims document retrieval.",
+        "Implemented healthcare claims adjudication workflows covering fake claim detection, claim validation, final bill verification, approval/rejection support, and human-in-the-loop review for complex claim decisions.",
+        "Applied production engineering practices including API design, unit and integration testing, CI/CD deployment, secure secrets management, logging, debugging, performance tuning, and cross-functional collaboration with product, QA, DevOps, and domain teams."
+      ],
+      "highlights": [],
+      "tags": ["Java 17", "Python", "FastAPI","Spring Boot", "Machine Learning","React.js", "REST APIs", "gRPC", "Microservices", "XGBoost", "RAG", "Azure Service Bus", "Redis", "Azure Key Vault", "PostgreSQL",  "ChromaDB", "Qdrant", "MLOps", "CI/CD"]
+    },
+    {
+      "company": "Endava",
+      "role": "Junior Machine Learning Engineer",
+      "period": "Sep 2025 - Dec 2025",
+      "duration": "4 mos",
+      "location": "India",
+      "careerTrack": "Endava promotion path",
+      "careerLevel": "Level 2",
+      "careerStage": "Promoted role",
+      "highlights": [
+        "Contributed to ML model development and deployment workflows",
+        "Worked on data pipelines and optimization of ML systems"
+      ],
+      "tags": ["Java", "Python", "Spring Boot", "Backend", "Machine Learning","Chatbot development", "Ai Agents", "Agentic Ai", "Model Deployment", "Data Pipelines", "Optimization","Enterprise Applications", "Full Stack"]
+    },
+    {
+      "company": "Endava (formerly GalaxE.Solutions)",
+      "role": "Junior Developer",
+      "period": "Aug 2024 - Sep 2025",
+      "duration": "1 yr 2 mos",
+      "location": "Bengaluru, India",
+      "workMode": "On-site",
+      "careerTrack": "Endava promotion path",
+      "careerLevel": "Level 1",
+      "careerStage": "Promotion start",
+      "highlights": [
+        "Worked on backend systems using Java and Spring Boot",
+        "Built and maintained enterprise-grade applications",
+        "Collaborated in full-stack development workflows"
+      ],
+      "tags": ["Java", "Python", "Spring Boot", "Backend", "Machine Learning", "Model Deployment", "Data Pipelines", "Optimization","Enterprise Applications", "Full Stack","Generative AI"]
+    },
+    {
+      "company": "GalaxE.Solutions",
+      "role": "Full Stack Intern",
+      "period": "Oct 2023 - Feb 2024",
+      "duration": "5 mos",
+      "location": "Bengaluru, India",
+      "employmentType": "Internship",
+      "workMode": "Hybrid",
+      "careerStage": "Foundation",
+      "highlights": [
+        "Built a full-stack Student Portal using Java, Spring MVC, PostgreSQL, React.js, and REST APIs for attendance, grade management, and user access workflows, supporting 1,000+ active users.",
+        "Implemented JWT-based authentication, role-based access control for admin, faculty, and student users, normalized database schemas, and delivered the portal within a 10-week timeline while reducing manual administrative effort",
+        "Built foundation in scalable application design"
+      ],
+      "tags": ["Full Stack", "Backend APIs", "Enterprise Development", "Scalable Design"]
+    }
+  ],
+  "skills": {
+    "groups": [
+      {
+        "title": "Languages",
+        "icon": "Code2",
+        "summary": "Core programming and query languages used across product, data, and API work.",
+        "tooltip": "Click to show language skills.",
+        "skills": [
+          {
+            "name": "Python",
+            "detail": "FastAPI, Flask",
+            "localLogo": "Python",
+            "libraries": [
+              { "name": "FastAPI", "logoSlug": "FastAPI" },
+              { "name": "Flask", "logoSlug": "Flask" },
+              { "name": "Pandas", "logoSlug": "Pandas" },
+              { "name": "NumPy", "logoSlug": "numpy" },
+              { "name": "Request", "logoSlug": "Request"}
+
+            ],
+            "tip": "Primary language for AI services, APIs, automation, and model workflows."
+          },
+          {
+            "name": "Java",
+            "detail": "Spring Boot, Microservices",
+            "localLogo": "Java",
+            "libraries": [
+              { "name": "Spring Boot", "logoSlug": "springboot" },
+              { "name": "Spring AI", "logoSlug": "spring" },
+              { "name": "Spring Security", "logoSlug": "springsecurity" },
+              { "name": "Spring Cloud", "logoSlug": "springcloud" },
+              { "name": "Microservices", "logoSlug": "microservices" }
+            ],
+            "tip": "Enterprise backend services, integrations, and resilient API layers."
+          }
+        ]
+      },
+      {
+        "title": "Frontend",
+        "icon": "Layers3",
+        "summary": "Interface technologies for responsive, component-driven user experiences.",
+        "tooltip": "Click to show frontend skills.",
+        "skills": [
+          {
+            "name": "React.js",
+            "localLogo": "React.js",
+            "libraries": [
+              { "name": "React Router", "logoSlug": "reactrouter" },
+              { "name": "Context API", "localLogo": "React.js" },
+              { "name": "Redux", "logoSlug": "Redux" },
+              { "name": "Axios", "logoSlug": "axios" }
+            ],
+            "tip": "Reusable components, dashboards, portals, and AI-enabled UI flows."
+          },
+          {
+            "name": "HTML5",
+            "libraries": [
+              { "name": "Accessibility", "logoSlug": "w3c" },
+              { "name": "Forms", "logoSlug": "html5" }
+
+
+            ],
+            "tip": "Semantic, accessible page structure for reliable interfaces."
+          },
+          {
+            "name": "CSS3",
+            "libraries": [
+              { "name": "Flexbox", "logoSlug": "css3" },
+              { "name": "Grid", "logoSlug": "csswizardry" },
+              { "name": "Sass", "logoSlug": "sass" }
+            ],
+            "tip": "Responsive layouts, animation systems, and polished visual states."
+          },
+          {
+            "name": "BootStrap",
+            "libraries": [
+              { "name": "Grid", "logoSlug": "bootstrap" },
+              { "name": "Utilities", "logoSlug": "bootstrap" },
+              { "name": "Components", "logoSlug": "bootstrap" }
+            ],
+            "tip": "Fast layout primitives and familiar responsive UI patterns."
+          }, {
+            "name": "TypeScript",
+            "libraries": [
+              { "name": "DOM APIs", "logoSlug": "reactrouter" },
+              { "name": "Axios", "logoSlug": "axios" }
+            ],
+            "tip": "Typed frontend and service code for safer product iteration."
+          },
+          {
+            "name": "JavaScript",
+            "localLogo": "JavaScript",
+            "libraries": [
+              { "name": "DOM APIs", "logoSlug": "reactrouter" },
+              { "name": "Fetch", "logoSlug": "axios" }
+            ],
+            "tip": "Interactive UI behavior, integrations, and web application features."
+          }
+        ]
+      },
+      {
+        "title": "AI / ML",
+        "icon": "BrainCircuit",
+        "summary": "Generative AI, model development, retrieval, fine-tuning, and MLOps.",
+        "tooltip": "Click to show AI, ML, and LLM skills.",
+        "skills": [
+          {
+            "name": "GENERATIVE AI",
+            "libraries": [
+              { "name": "RAG", "logoSlug": "openai" },
+              { "name": "LangChain", "logoSlug": "langchain" },
+              { "name": "LlamaIndex", "logoSlug": "llamaindex" },
+              { "name": "OpenAI APIs", "logoSlug": "openai" }
+            ],
+            "tip": "Systems that generate, reason, retrieve, and assist with business workflows."
+          },
+          {
+            "name": "MACHINE LEARNING",
+            "libraries": [
+              { "name": "pandas", "logoSlug": "pandas" },
+              { "name": "NumPy", "logoSlug": "numpy" },
+              { "name": "scikit-learn", "logoSlug": "scikitlearn" },
+              { "name": "XGBoost", "logoSlug": "xgboost" }
+            ],
+            "tip": "Classic machine learning, feature work, and evaluation."
+          },
+          {
+            "name": "DEEP LEARNING",
+            "libraries": [
+              { "name": "PyTorch", "logoSlug": "pytorch" },
+              { "name": "TensorFlow", "logoSlug": "tensorflow" },
+              { "name": "Keras", "logoSlug": "keras" },
+              { "name": "CUDA", "logoSlug": "nvidia" }
+            ],
+            "tip": "Deep learning workflows for richer model capabilities."
+          },
+          {
+            "name": "MLOps",
+            "libraries": [
+              { "name": "MLflow", "logoSlug": "mlflow" },
+              { "name": "Docker", "logoSlug": "docker" },
+              { "name": "Kubernetes", "logoSlug": "kubernetes" },
+              { "name": "Airflow", "logoSlug": "apacheairflow" }
+            ],
+            "tip": "Model lifecycle, deployment, monitoring, and release practices."
+          }
+        ]
+      },
+      {
+        "title": "Backend & APIs",
+        "icon": "ServerCog",
+        "summary": "Service contracts, realtime channels, auth flows, and backend architecture.",
+        "tooltip": "Click to show backend and API skills.",
+        "skills": [
+          {
+            "name": "REST APIs",
+            "libraries": [
+              { "name": "OpenAPI", "logoSlug": "openapiinitiative" },
+              { "name": "Swagger", "logoSlug": "swagger" },
+              { "name": "Postman", "logoSlug": "postman" }
+            ],
+            "tip": "Clear contracts for product and integration workflows."
+          },
+          {
+            "name": "Microservices",
+            "libraries": [
+              { "name": "Spring Boot", "logoSlug": "springboot" },
+              { "name": "Docker", "logoSlug": "docker" },
+              { "name": "gRPC", "logoSlug": "grpc" },
+              { "name": "Kafka", "logoSlug": "apachekafka" }
+            ],
+            "tip": "Bounded services that keep deployment and ownership clean."
+          },
+          {
+            "name": "JWT/OAuth2",
+            "libraries": [
+              { "name": "JWT", "logoSlug": "jsonwebtokens" },
+              { "name": "OAuth2", "logoSlug": "auth0" },
+              { "name": "Spring Security", "logoSlug": "springsecurity" }
+            ],
+            "tip": "Secure authentication and authorization for web platforms."
+          }
+        ]
+      },
+      {
+        "title": "Databases",
+        "icon": "Database",
+        "summary": "Relational, document, and cache stores for product and AI data paths.",
+        "tooltip": "Click to show database skills.",
+        "skills": [
+          {
+            "name": "PostgreSQL",
+            "libraries": [
+              { "name": "pgAdmin", "logoSlug": "postgresql" },
+              { "name": "Prisma", "logoSlug": "prisma" },
+              { "name": "SQLAlchemy", "logoSlug": "sqlalchemy" }
+            ],
+            "tip": "Reliable relational storage, indexing, and analytics-friendly schemas."
+          },
+          {
+            "name": "MySQL",
+            "libraries": [
+              { "name": "Workbench", "logoSlug": "mysql" },
+              { "name": "Sequelize", "logoSlug": "sequelize" },
+              { "name": "Knex", "logoSlug": "knexjs" }
+            ],
+            "tip": "Transactional application data and familiar relational workflows."
+          },
+          {
+            "name": "MongoDB",
+            "libraries": [
+              { "name": "Mongoose", "logoSlug": "mongoose" },
+              { "name": "Atlas", "logoSlug": "mongodb" },
+              { "name": "Compass", "logoSlug": "mongodb" }
+            ],
+            "tip": "Flexible document storage for evolving product data."
+          },
+          {
+            "name": "Redis",
+            "libraries": [
+              { "name": "ioredis", "logoSlug": "redis" },
+              { "name": "Redis Queue", "logoSlug": "redis" },
+              { "name": "BullMQ", "logoSlug": "bullmq" }
+            ],
+            "tip": "Caching, queues, and fast state for low-latency systems."
+          }
+        ]
+      },
+      {
+        "title": "Cloud & DevOps",
+        "icon": "Cloud",
+        "summary": "Cloud services, release pipelines, containers, and operational delivery.",
+        "tooltip": "Click to show cloud and DevOps skills.",
+        "skills": [
+          {
+            "name": "AWS",
+            "detail": "EC2, S3, Lambda",
+            "libraries": [
+              { "name": "IAM", "logoSlug": "amazonaws" },
+              { "name": "CloudWatch", "logoSlug": "amazonaws" },
+              { "name": "ECS", "logoSlug": "amazonaws" },
+              { "name": "RDS", "logoSlug": "amazonaws" }
+            ],
+            "tip": "Compute, storage, serverless, and AI infrastructure foundations."
+          },
+          {
+            "name": "AZURE",
+            "detail": "Key Vault, Redis, Service Bus",
+            "libraries": [
+              { "name": "Functions", "logoSlug": "azurefunctions" },
+              { "name": "App Service", "logoSlug": "azuredevops" },
+              { "name": "Cosmos DB", "logoSlug": "microsoftazure" }
+            ],
+            "tip": "Secrets, messaging, cache, and enterprise cloud integrations."
+          },
+          {
+            "name": "GCP",
+            "libraries": [
+              { "name": "Compute Engine", "logoSlug": "googlecloud" },
+              { "name": "Cloud Storage", "logoSlug": "googlecloud" },
+              { "name": "Cloud Run", "logoSlug": "googlecloud" }
+            ],
+            "tip": "Portable service packaging and repeatable runtime environments."
+          }
+          
+        ]
+      }
+    ],
+    "overviewItems": [
+      {
+        "title": "Build",
+        "icon": "Code2",
+        "text": "Interfaces, APIs, and services composed around clear ownership."
+      },
+      {
+        "title": "Protect",
+        "icon": "LockKeyhole",
+        "text": "Auth, secrets, boundaries, and operational habits that reduce surprises."
+      },
+      {
+        "title": "Connect",
+        "icon": "Network",
+        "text": "RAG, realtime APIs, integrations, and cloud services wired with traceability."
+      }
+    ]
+  }
+}

@@ -1,0 +1,423 @@
+.certAwardsSection {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: clamp(3.8rem, 6vw, 5.2rem) clamp(1rem, 4vw, 4rem);
+  background: #050505;
+  color: var(--nav-active);
+}
+
+.certAwardsSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(183, 171, 152, 0.024) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(183, 171, 152, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent);
+}
+
+.certAwardsSection::after {
+  content: 'AWARDS';
+  position: absolute;
+  left: clamp(1rem, 6vw, 5rem);
+  top: 1.2rem;
+  color: rgba(183, 171, 152, 0.035);
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+.certAwardsInner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 67vw);
+  margin: 0 auto;
+}
+
+.certAwardsHeader {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 42rem;
+  margin-bottom: clamp(1.8rem, 3.5vw, 2.8rem);
+}
+
+.certAwardsHeader span,
+.certAwardsGroupHeader h3 {
+  color: rgba(255, 212, 188, 0.92);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.52em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.65);
+}
+
+.certAwardsHeader h2 {
+  margin: 0;
+  max-width: 17ch;
+  color: var(--nav-active);
+  font-size: clamp(1.65rem, 3.4vw, 2.8rem);
+  font-weight: 850;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.certAwardsLayout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.36fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: stretch;
+}
+
+.certAwardsFeature {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: 26rem;
+  overflow: hidden;
+  border: 1px solid rgba(183, 171, 152, 0.16);
+  border-radius: 0.95rem;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(235, 89, 57, 0.22), transparent 42%),
+    linear-gradient(165deg, rgba(183, 171, 152, 0.1), rgba(183, 171, 152, 0.018) 48%, rgba(235, 89, 57, 0.075)),
+    rgba(8, 9, 12, 0.82);
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
+  box-shadow:
+    0 1.4rem 3.4rem rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.certAwardsFeature::before {
+  content: '';
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid rgba(183, 171, 152, 0.1);
+  border-radius: 0.75rem;
+  pointer-events: none;
+}
+
+.certAwardsFeatureIcon {
+  position: absolute;
+  left: 1.35rem;
+  top: 1.35rem;
+  display: grid;
+  width: 3.6rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(235, 89, 57, 0.46);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(235, 89, 57, 0.08);
+  box-shadow: 0 0 1.6rem rgba(235, 89, 57, 0.22);
+}
+
+.certAwardsFeature p,
+.certAwardContent p {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.certAwardsFeature h3 {
+  margin: 0.6rem 0 0;
+  color: #f5f5f4;
+  font-size: clamp(1.8rem, 3.5vw, 3.1rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.certAwardsFeature > span:last-child {
+  margin-top: 1rem;
+  color: rgba(183, 171, 152, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.certAwardsColumns,
+.certAwardsGroup,
+.certAwardList {
+  display: grid;
+}
+
+.certAwardsColumns {
+  gap: clamp(1rem, 2vw, 1.4rem);
+}
+
+.certAwardsGroup {
+  gap: 0.9rem;
+}
+
+.certAwardsGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(183, 171, 152, 0.12);
+  color: var(--accent);
+}
+
+.certAwardsGroupHeader h3 {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+}
+
+.certAwardList {
+  gap: 0.85rem;
+}
+
+.certAwardCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: start;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(183, 171, 152, 0.13);
+  border-radius: 0.85rem;
+  background:
+    linear-gradient(145deg, rgba(183, 171, 152, 0.07), rgba(183, 171, 152, 0.018)),
+    rgba(8, 9, 12, 0.72);
+  padding: 1rem;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  box-shadow: 0 1rem 2.4rem rgba(0, 0, 0, 0.22);
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.credentialModalContent {
+  display: grid;
+  gap: 1rem;
+  color: rgba(232, 222, 208, 0.9);
+}
+
+.credentialModalPreview {
+  position: relative;
+  display: grid;
+  min-height: 16rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(183, 171, 152, 0.18);
+  border-radius: 0.95rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(235, 89, 57, 0.24), transparent 42%),
+    linear-gradient(145deg, rgba(183, 171, 152, 0.1), rgba(183, 171, 152, 0.018)),
+    rgba(8, 9, 12, 0.9);
+  padding: 1.4rem;
+  text-align: center;
+}
+
+.credentialModalPreview img {
+  display: block;
+  width: 100%;
+  max-height: min(68vh, 34rem);
+  object-fit: contain;
+  border-radius: 0.65rem;
+  background: #fff;
+}
+
+.credentialModalPreview svg {
+  color: var(--accent);
+}
+
+.credentialModalPreview span,
+.credentialModalPreview small {
+  color: rgba(183, 171, 152, 0.72);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.credentialModalPreview strong {
+  max-width: 22rem;
+  color: #fff;
+  font-size: clamp(1.45rem, 4vw, 2.25rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.credentialModalContent > .certAwardLink {
+  width: max-content;
+  min-height: 2.6rem;
+  aspect-ratio: auto;
+  grid-auto-flow: column;
+  gap: 0.45rem;
+  border-radius: 999px;
+  padding: 0 0.9rem;
+}
+
+.credentialModalContent > .certAwardLink::before {
+  content: 'Open credential';
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.certAwardCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.07), transparent 34%);
+  opacity: 0.55;
+}
+
+.certAwardCard:hover {
+  border-color: rgba(235, 89, 57, 0.46);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(235, 89, 57, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(183, 171, 152, 0.08), rgba(183, 171, 152, 0.02)),
+    rgba(10, 11, 14, 0.82);
+  box-shadow: 0 1.25rem 2.8rem rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.certAwardIcon,
+.certAwardLink {
+  position: relative;
+  display: grid;
+  width: 2.55rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(183, 171, 152, 0.16);
+  border-radius: 999px;
+  color: var(--nav-active);
+  background: rgba(183, 171, 152, 0.07);
+}
+
+.certAwardIcon {
+  overflow: hidden;
+}
+
+.certAwardIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #fff;
+  transform: scale(1.18);
+}
+
+.awardCard .certAwardIcon {
+  color: var(--accent);
+  border-color: rgba(235, 89, 57, 0.36);
+  background: rgba(235, 89, 57, 0.08);
+}
+
+.certAwardContent {
+  position: relative;
+  min-width: 0;
+}
+
+.certAwardContent h3 {
+  margin: 0.35rem 0 0;
+  color: #f5f5f4;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-weight: 850;
+  line-height: 1.18;
+}
+
+.certAwardContent span,
+.certAwardContent small {
+  display: block;
+  margin-top: 0.45rem;
+  color: rgba(183, 171, 152, 0.68);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.certAwardContent small {
+  max-width: 44rem;
+}
+
+.certAwardLink {
+  color: rgba(183, 171, 152, 0.72);
+  text-decoration: none;
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.certAwardLink:hover,
+.certAwardLink:focus-visible {
+  border-color: rgba(235, 89, 57, 0.76);
+  color: var(--accent);
+  background: rgba(235, 89, 57, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 991.98px) {
+  .certAwardsInner {
+    width: min(100%, 82vw);
+  }
+
+  .certAwardsLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .certAwardsFeature {
+    min-height: 18rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .certAwardsSection {
+    min-height: auto;
+    padding: 3.25rem 1rem 4rem;
+  }
+
+  .certAwardsInner {
+    width: 100%;
+  }
+
+  .certAwardsSection::after {
+    font-size: clamp(3.1rem, 18vw, 5rem);
+  }
+
+  .certAwardsHeader span,
+  .certAwardsGroupHeader h3 {
+    letter-spacing: 0.3em;
+  }
+
+  .certAwardsFeature {
+    min-height: 16rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .certAwardCard {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .certAwardLink {
+    grid-column: 2;
+    width: 2.35rem;
+  }
+
+  .credentialModalPreview {
+    min-height: 13rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certAwardCard,
+  .certAwardLink {
+    transition: none;
+  }
+
+  .certAwardCard:hover,
+  .certAwardLink:hover,
+  .certAwardLink:focus-visible {
+    transform: none;
+  }
+}
