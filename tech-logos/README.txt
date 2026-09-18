@@ -1,0 +1,1 @@
+Technology logo assets sourced from Simple Icons (https://simpleicons.org), distributed under CC0. OpenAI, Microsoft Azure, and OpenJDK assets are from simple-icons v11; others were retrieved from the Simple Icons CDN. Brand marks remain the property of their respective owners.
