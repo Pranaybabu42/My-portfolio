@@ -276,7 +276,7 @@ const profile = {
     {
       institution: 'NRI Institute of Technology,',
       degree: 'B.Tech in Electronics and Communication',
-      period: '2021 - 2024',
+      period: '2020 - 2024',
     },
   ],
   publications: [
@@ -313,15 +313,39 @@ const profile = {
       year: '2025',
       image: certImg('rX jAVA.jpg'),
     },
+    {
+      title: 'AWS Certified Solutions Architect - Associate',
+      issuer: 'AWS',
+      year: 'In progress',
+      status: 'In Progress',
+    },
+    {
+      title: 'AWS Certified AI Practitioner - Associate',
+      issuer: 'AWS',
+      year: 'In progress',
+      status: 'In Progress',
+    },
+    {
+      title: 'AWS Certified Cloud Practitioner - Associate',
+      issuer: 'AWS',
+      year: 'In progress',
+      status: 'In Progress',
+    },
   ],
   awards: [
+    {
+      title: 'Codex Hackathon - 2026',
+      issuer: 'Endava',
+      year: '2026',
+      summary: 'Recognized with a top-5 position in the Endava Codex Hackathon.',
+    },
     {
       title: '2nd Place - Regional AI Innovation Competition',
       issuer: 'Enterprise AI Challenge',
       year: '2025',
       summary:
         'Recognized for an evaluation platform that improved AI solution assessment and delivery confidence.',
-      link: 'https://example.com',
+      link: 'https://www.linkedin.com/posts/pranay-babu-thalluri-348b5422b_innovation-ai-teamwork-ugcPost-7344381771033006080-Df8F/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADmoJegByQBanZDKqhwFhY8pG2JfV2N9KcM',
     },
     {
       title: 'High Impact AI Delivery Recognition',
@@ -329,7 +353,6 @@ const profile = {
       year: '2024',
       summary:
         'Awarded for building practical GenAI workflows with measurable engineering and product value.',
-      link: 'https://example.com',
     },
   ],
   testimonials: [

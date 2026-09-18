@@ -1,69 +1,50 @@
 import { createElement } from 'react'
-import { motion } from 'framer-motion' // eslint-disable-line no-unused-vars
-import {
-  BrainCircuit,
-  Code2,
-  Database,
-  Layers3,
-  MapPin,
-  Network,
-  Rocket,
-  Sparkles,
-  Workflow,
-} from 'lucide-react'
+import { ArrowDownRight, ArrowRight, CloudUpload, Code2, GitMerge, Lightbulb, TrendingUp } from 'lucide-react'
 import NeuralBackground from '../effects/NeuralBackground'
+import { scrollToSection } from '../../utils/scrollToSection'
 import './Hero.css'
 
-const heroBackgroundImage = new URL('../../../assets/my-images/Pranay_sketch.png', import.meta.url).href
-
-
-const roleCards = [
-  { label: 'Fullstack Engineer', icon: Code2 },
-  { label: 'AI Engineering', icon: BrainCircuit },
-  { label: 'Problem Solver', icon: Layers3 },
-  { label: 'Always Learning', icon: Rocket },
+const capabilities = [
+  'Agentic AI Systems',
+  'Multi-Agent Orchestration',
+  'RAG Pipelines',
+  'Responsible AI & Guardrails',
+  'Full-Stack Applications',
 ]
 
-const topMeta = [
-  { label: 'Fullstack Engineer', icon: Code2 },
-  { label: 'AI Engineering', icon: BrainCircuit },
-  { label: 'Based in Bengaluru', icon: MapPin },
+const roadmap = [
+  { label: 'Idea', detail: 'Discover the opportunity', icon: Lightbulb },
+  { label: 'Build', detail: 'Engineer the solution', icon: Code2 },
+  { label: 'Integrate', detail: 'Connect data and systems', icon: GitMerge },
+  { label: 'Deploy', detail: 'Ship reliably at scale', icon: CloudUpload },
+  { label: 'Impact', detail: 'Create measurable value', icon: TrendingUp },
 ]
 
-const techStack = [
-  { label: 'Java', icon: Code2 },
-  { label: 'Python', icon: Code2 },
-  { label: 'Spring Boot', icon: Layers3 },
-  { label: 'FastAPI', icon: Workflow },
-  { label: 'TensorFlow', icon: BrainCircuit },
-  { label: 'PyTorch', icon: BrainCircuit },
-  { label: 'LangChain', icon: Network },
-  { label: 'OpenAI', icon: Sparkles },
-  { label: 'PostgreSQL', icon: Database },
-]
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: (reducedMotion) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: reducedMotion ? 0 : 0.55, ease: 'easeOut' },
-  }),
+function HeroLink({ children, className, reducedMotion, sectionId }) {
+  return (
+    <a
+      href={`#${sectionId}`}
+      className={className}
+      onClick={(event) => {
+        event.preventDefault()
+        scrollToSection(sectionId, reducedMotion)
+        window.history.replaceState(null, '', `#${sectionId}`)
+      }}
+    >
+      {children}
+    </a>
+  )
 }
 
 function Hero({ profile, reducedMotion }) {
-  const nameParts = String(profile?.name ?? 'Pranay Thalluri').split(' ').filter(Boolean)
-  const firstName = nameParts[0] ?? 'Pranay'
-  const displayLastName = nameParts.slice(1).join(' ').replace(/^Babu\s*/i, '') || 'Thalluri'
-  const location = profile?.location ?? 'India'
-  const city = location.split(',')[0] || location
+  const displayName = 'Pranay Babu Thaluri'
 
   return (
     <section
       id="hero"
-      className="hero-showcase position-relative overflow-hidden"
+      tabIndex={-1}
+      className="hero-showcase"
       aria-label="Portfolio hero"
-      style={{ '--hero-bg-image': `url("${heroBackgroundImage}")` }}
     >
       <div className="hero-showcase__shade" aria-hidden="true" />
       <div className="hero-showcase__neural" aria-hidden="true">
@@ -71,83 +52,77 @@ function Hero({ profile, reducedMotion }) {
       </div>
       <div className="hero-showcase__grain" aria-hidden="true" />
 
-      <div className="hero-showcase__topbar" aria-hidden="true">
-        {topMeta.map(({ label, icon }) => (
-          <span className="hero-showcase__topbar-item" key={label}>
-            {createElement(icon, { size: 18, strokeWidth: 1.45 })}
-            {label === 'Based in India' ? `Based in ${city}` : label}
-          </span>
-        ))}
-      </div>
-
-      <motion.div
-        className="hero-showcase__content position-relative z-1"
-        initial={reducedMotion ? false : 'hidden'}
-        animate="show"
-        variants={{
-          hidden: {},
-          show: { transition: { staggerChildren: reducedMotion ? 0 : 0.12 } },
-        }}
+      <div
+        className="hero-showcase__layout"
       >
-        <motion.p custom={reducedMotion} variants={item} className="hero-showcase__eyebrow">
-          Hi, I'm
-        </motion.p>
+        <div className="hero-showcase__content">
+          <p className="hero-showcase__name">
+            {displayName}
+          </p>
 
-        <motion.h1 custom={reducedMotion} variants={item} className="hero-showcase__title">
-          <span>{firstName}</span>
-          <span>{displayLastName}</span>
-        </motion.h1>
+          <p className="hero-showcase__principles">
+            <span>Engineer</span><i>×</i><span>Innovate</span><i>×</i><span>Build</span>
+          </p>
 
-        <motion.p custom={reducedMotion} variants={item} className="hero-showcase__summary">
-          Building intelligent, scalable, and impactful digital experiences.
-        </motion.p>
+          <h1 className="hero-showcase__title">
+            Building intelligent products for a <em>smarter tomorrow.</em>
+          </h1>
 
-        <motion.div custom={reducedMotion} variants={item} className="hero-showcase__roles">
-          {roleCards.map(({ label, icon }) => (
-            <span className="hero-showcase__role" key={label}>
-              {createElement(icon, { size: 27, strokeWidth: 1.45, 'aria-hidden': true })}
-              {label}
-            </span>
-          ))}
-        </motion.div>
+          <p className="hero-showcase__summary">
+            I design, build, and deploy AI-powered applications that solve real-world problems—from intelligent interfaces to scalable cloud systems.
+          </p>
 
-      </motion.div>
+          <p className="hero-showcase__role">
+            <span aria-hidden="true" />
+            Machine Learning Engineer at <strong>Endava</strong>
+          </p>
 
-      <aside className="hero-showcase__stack" aria-label="Technology stack">
-        <p>I build with</p>
-        <div className="hero-showcase__stack-rule" aria-hidden="true" />
-        <div className="hero-showcase__tech-grid">
-          {techStack.map(({ label, icon }) => (
-            <span className="hero-showcase__tech" key={label}>
-              {createElement(icon, { size: 26, strokeWidth: 1.5, 'aria-hidden': true })}
-              <span>{label}</span>
-            </span>
-          ))}
+          <div className="hero-showcase__actions">
+            <HeroLink className="hero-action hero-action--primary" sectionId="projects" reducedMotion={reducedMotion}>
+              Explore my work <ArrowDownRight size={18} />
+            </HeroLink>
+            <HeroLink className="hero-action hero-action--secondary" sectionId="contact" reducedMotion={reducedMotion}>
+              Contact me <ArrowRight size={18} />
+            </HeroLink>
+          </div>
+
+          <ul className="hero-showcase__capabilities" aria-label="Core capabilities">
+            {capabilities.map((capability) => <li key={capability}>{capability}</li>)}
+          </ul>
         </div>
-      </aside>
 
-      <motion.div
-        custom={reducedMotion}
-        variants={item}
-        className="hero-showcase__code-wrap hero-showcase__code-wrap--floating"
-      >
-        <pre className="hero-showcase__code" aria-label="Builder values">
-{`const builder = {
-  passion: "Code",
-  focus: ["AI", "System Design", "User Impact"],
-  goal: "Build products that make a difference"
-};`}
-        </pre>
-      </motion.div>
-
-      <div className="hero-showcase__scroll" aria-hidden="true">
-        <span>Scroll to explore</span>
-        <i />
+        <aside className="hero-roadmap" aria-label="Delivery roadmap">
+          <div className="hero-roadmap__heading">
+            <span>How I create value</span>
+            <h2>From idea to impact</h2>
+          </div>
+          <div className="hero-roadmap__map">
+            <svg className="hero-roadmap__road" viewBox="0 0 420 540" preserveAspectRatio="none" aria-hidden="true">
+              <path className="hero-roadmap__road-edge" pathLength="100" d="M70 20 C70 90 350 75 350 145 S70 205 70 275 S350 335 350 410 S70 470 70 525" />
+              <path className="hero-roadmap__road-surface" pathLength="100" d="M70 20 C70 90 350 75 350 145 S70 205 70 275 S350 335 350 410 S70 470 70 525" />
+              <path className="hero-roadmap__road-center" pathLength="100" d="M70 20 C70 90 350 75 350 145 S70 205 70 275 S350 335 350 410 S70 470 70 525" />
+              <path className="hero-roadmap__road-motion" pathLength="100" d="M70 20 C70 90 350 75 350 145 S70 205 70 275 S350 335 350 410 S70 470 70 525" />
+            </svg>
+            <ol className="hero-roadmap__steps">
+              {roadmap.map(({ detail, icon: Icon, label }, index) => (
+                <li key={label} style={{ '--roadmap-index': index }}>
+                  <span className="hero-roadmap__node">
+                    {createElement(Icon, { size: 19, strokeWidth: 1.7, 'aria-hidden': true })}
+                  </span>
+                  <span className="hero-roadmap__copy">
+                    <strong>{label}</strong>
+                    <span>{detail}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </aside>
       </div>
 
-      <p className="hero-showcase__future">Let's build the future.</p>
     </section>
   )
 }
 
 export default Hero
+

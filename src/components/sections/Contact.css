@@ -60,12 +60,14 @@
 
 .contactShowcaseHeader h2 {
   margin: 0;
-  max-width: 18ch;
-  color: var(--nav-active);
-  font-size: clamp(1.75rem, 3.6vw, 3.1rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
+  max-width: none;
+  color: rgba(255, 212, 188, 0.92);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .contactShowcaseGrid {
@@ -338,6 +340,11 @@
 
   .contactChannelLink > svg:last-child {
     display: none;
+  }
+
+  .contactShowcaseHeader h2 {
+    font-size: clamp(0.58rem, 3vw, 0.8rem);
+    letter-spacing: 0.18em;
   }
 }
 

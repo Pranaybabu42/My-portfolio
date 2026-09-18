@@ -122,8 +122,8 @@ function Experience({ items, reducedMotion }) {
       <div ref={ref} className="experienceInner">
         <Motion.header
           className="experienceHeader"
-          initial={reducedMotion ? false : { opacity: 0, y: 30, filter: 'blur(10px)' }}
-          animate={isInView || reducedMotion ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+          initial={reducedMotion ? false : { opacity: 0, y: 30 }}
+          animate={isInView || reducedMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reducedMotion ? 0 : 1.2, ease: [0.19, 1, 0.22, 1] }}
         >
           <h2>EXPERIENCE</h2>
@@ -148,8 +148,8 @@ function Experience({ items, reducedMotion }) {
               <Motion.article
                 key={group.type === 'track' ? group.title : `${group.item.company}-${group.item.period}`}
                 className={group.type === 'track' ? 'experienceMotionWrap' : getExperienceCardClass(group.item)}
-                initial={reducedMotion ? false : { opacity: 0, y: 30, filter: 'blur(10px)' }}
-                animate={isInView || reducedMotion ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+                initial={reducedMotion ? false : { opacity: 0, y: 30 }}
+                animate={isInView || reducedMotion ? { opacity: 1, y: 0 } : {}}
                 transition={{
                   duration: reducedMotion ? 0 : 1.2,
                   delay: reducedMotion ? 0 : index * 0.2,

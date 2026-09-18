@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
 import './Contact.css'
 
 function Contact({ profile }) {
@@ -38,12 +38,6 @@ function Contact({ profile }) {
               <h3>AI products, full-stack platforms, and focused engineering work.</h3>
             </div>
 
-            <div className="contactInfoStack">
-              <span className="contactInfoLink contactInfoStatic">
-                <MapPin size={18} />
-                <span>{profile.location}</span>
-              </span>
-            </div>
           </aside>
 
           <div className="contactLinksPanel" aria-label="Contact links">

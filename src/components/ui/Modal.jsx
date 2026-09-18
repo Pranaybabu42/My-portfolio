@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 import { X } from 'lucide-react'
+import './Modal.css'
 
 function Modal({ isOpen, onClose, title, children, reducedMotion = false }) {
   useEffect(() => {
@@ -44,7 +45,7 @@ function Modal({ isOpen, onClose, title, children, reducedMotion = false }) {
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 rounded-lg border border-border p-2 text-muted transition-colors hover:border-accent hover:text-accent"
+              className="modal-close-button absolute right-4 top-4 rounded-lg p-2 transition-colors"
               aria-label="Close modal"
             >
               <X size={18} />

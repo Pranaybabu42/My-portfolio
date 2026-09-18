@@ -59,19 +59,17 @@
 
 .certAwardsHeader h2 {
   margin: 0;
-  max-width: 17ch;
-  color: var(--nav-active);
-  font-size: clamp(1.65rem, 3.4vw, 2.8rem);
-  font-weight: 850;
-  line-height: 1.04;
-  letter-spacing: 0;
+  color: rgba(255, 212, 188, 0.92);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.52em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.65);
 }
 
 .certAwardsLayout {
-  display: grid;
-  grid-template-columns: minmax(16rem, 0.36fr) minmax(0, 1fr);
-  gap: clamp(1.2rem, 3vw, 2.4rem);
-  align-items: stretch;
+  display: block;
 }
 
 .certAwardsFeature {
@@ -356,6 +354,172 @@
   transform: translateY(-2px);
 }
 
+/* Certifications use a compact badge layout, while awards retain the richer
+   list treatment below the recognition panel. */
+.certificationBadgeList {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.certificateCard {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  min-height: 14rem;
+  row-gap: 0.35rem;
+  padding: 0.5rem 0.75rem 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.certificateCard::before {
+  display: none;
+}
+
+.certificateCard:hover {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  transform: translateY(-3px);
+}
+
+.certificateCard .certAwardIcon {
+  width: min(100%, 15rem);
+  height: 10.5rem;
+  border-radius: 0.5rem;
+  border-color: rgba(183, 171, 152, 0.22);
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+.certificateCard .certAwardIcon img {
+  object-fit: contain;
+  transform: none;
+}
+
+.certificateCard .certAwardContent {
+  width: 100%;
+}
+
+.certificateCard .certAwardContent h3 {
+  font-size: clamp(0.95rem, 1.35vw, 1.12rem);
+  color: #f08a68;
+  margin-top: 0;
+}
+
+.certificateCard .certAwardLink {
+  display: none;
+}
+
+.certStatus {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: inline-flex !important;
+  width: 0.85rem;
+  height: 0.85rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  color: rgba(183, 171, 152, 0.78) !important;
+  font-size: 0 !important;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.certStatusDot {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 0;
+  border-radius: 50%;
+  background: #69df8b;
+  box-shadow: 0 0 0.55rem rgba(99, 217, 132, 0.72);
+}
+
+.certStatusDot::after {
+  content: '✓';
+  display: block;
+  color: #07140b;
+  font-size: 0.52rem;
+  font-weight: 900;
+  line-height: 0.7rem;
+  text-align: center;
+}
+
+.certStatus.is-progress .certStatusDot {
+  background: #f4b75d;
+  box-shadow: 0 0 0.55rem rgba(244, 183, 93, 0.72);
+}
+
+.certStatus.is-progress .certStatusDot::after {
+  content: '•';
+}
+
+.upcomingCertifications {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(183, 171, 152, 0.12);
+}
+
+.upcomingCertifications h4 {
+  margin: 0 0 0.25rem;
+  color: #f4b75d;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.upcomingCertification {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.45rem 0;
+}
+
+.upcomingCertificationStatus {
+  width: 0.68rem;
+  height: 0.68rem;
+  border: 2px solid #f4b75d;
+  border-radius: 50%;
+  box-shadow: 0 0 0.55rem rgba(244, 183, 93, 0.65);
+}
+
+.upcomingCertification strong,
+.upcomingCertification span,
+.upcomingCertification small {
+  display: block;
+}
+
+.upcomingCertification strong {
+  color: #f3e6d8;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.upcomingCertification div span {
+  margin-top: 0.15rem;
+  color: #f08a68;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.upcomingCertification small {
+  color: #f4b75d;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 991.98px) {
   .certAwardsInner {
     width: min(100%, 82vw);
@@ -392,9 +556,21 @@
   .certAwardsFeature {
     min-height: 16rem;
   }
+
+  .certificationBadgeList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 520px) {
+  .certificationBadgeList {
+    grid-template-columns: 1fr;
+  }
+
+  .certificateCard {
+    min-height: 13rem;
+  }
+
   .certAwardCard {
     grid-template-columns: auto minmax(0, 1fr);
   }

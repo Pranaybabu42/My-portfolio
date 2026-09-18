@@ -451,14 +451,31 @@ export function RotatingMoonPortfolioView({ minimal = false, className = '' }) {
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 180)
     camera.position.set(0, 0.2, 8.8)
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      antialias: true,
-      powerPreference: 'high-performance',
-      alpha: false,
-    })
+    // Edge can disable WebGL for a profile/device even when Chrome enables it.
+    // Fail soft so the rest of the portfolio remains usable instead of leaving
+    // the entry sequence stuck behind a broken 3D canvas.
+    const webglContext = canvas.getContext('webgl2', { antialias: true })
+      || canvas.getContext('webgl', { antialias: true })
+    if (!webglContext) {
+      if (loading) loading.textContent = '3D preview unavailable'
+      return undefined
+    }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    let renderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        context: webglContext,
+        antialias: true,
+        powerPreference: 'high-performance',
+        alpha: false,
+      })
+    } catch {
+      if (loading) loading.textContent = '3D preview unavailable'
+      return undefined
+    }
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.15
 

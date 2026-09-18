@@ -17,6 +17,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Clip decorative horizontal overflow without creating a nested scroll container
+   that would interfere with sticky scenes and scroll-driven pins. */
+html,
+body {
+  /* Keep decorative scenes from producing a horizontal scrollbar in older Edge. */
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -68,8 +83,15 @@ a {
 
 .glass-panel {
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Tailwind has no `contrast-420` utility. Keep the intended treatment as a
+   real CSS filter so it is rendered consistently by Edge and Chrome. */
+.site-backdrop-image {
+  filter: grayscale(1) brightness(1.8) contrast(4.2);
 }
 
 .mobile-touch-cue {
@@ -79,6 +101,15 @@ a {
 .app-main {
   margin-left: 0;
   width: 100%;
+}
+
+/* Scroll animations and sticky scenes measure their sections through the DOM.
+   Keeping them renderable avoids Edge aggressively skipping a section before
+   IntersectionObserver/Framer Motion can start its animation. */
+.app-main > section {
+  content-visibility: visible;
+  contain: none;
+  contain-intrinsic-size: none;
 }
 
 .grid-bg {
@@ -105,6 +136,7 @@ a {
     rgba(10, 12, 16, 0.68);
   padding: clamp(1.25rem, 3vw, 2rem);
   box-shadow: 0 1.4rem 3.5rem rgba(0, 0, 0, 0.38);
+  -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   animation: contact-rise 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -245,6 +277,7 @@ a {
   box-shadow:
     0 1.15rem 2.5rem rgba(0, 0, 0, 0.48),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
 }
@@ -355,6 +388,7 @@ a {
   box-shadow:
     0 1rem 2.2rem rgba(0, 0, 0, 0.36),
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease, color 180ms ease;
@@ -422,6 +456,7 @@ a {
   background: rgba(12, 14, 18, 0.72);
   color: var(--nav-inactive);
   text-decoration: none;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 0.9rem 1.8rem rgba(0, 0, 0, 0.26);
   transition: color 160ms ease, border-color 160ms ease, transform 160ms ease, background 160ms ease;
@@ -436,6 +471,7 @@ a {
 }
 
 .nav-arc-link {
+  position: relative;
   transition: color 160ms ease;
 }
 
@@ -531,10 +567,6 @@ a {
 }
 
 @media (max-width: 767.98px) {
-  body {
-    overflow-x: hidden;
-  }
-
   .mobile-touch-cue {
     display: inline-flex;
     width: max-content;

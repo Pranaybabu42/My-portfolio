@@ -123,7 +123,7 @@
   flex-direction: column;
   margin: 0;
   color: var(--quote-gold);
-  font-size: clamp(2.75rem, 5.85vw, 4.25rem);
+  font-size: clamp(4rem, 4.35vw, 5rem);
   font-weight: 900;
   line-height: 0.99;
   letter-spacing: 3px;
@@ -139,28 +139,6 @@
 
 .quoteSpotlightAccent {
   color: var(--quote-highlight);
-}
-
-.quoteSpotlightCaret {
-  display: inline-block;
-  width: 0.08em;
-  height: 0.86em;
-  margin-left: 0.08em;
-  vertical-align: -0.06em;
-  background: currentColor;
-  animation: quoteCaretBlink 1s steps(1, end) infinite;
-}
-
-@keyframes quoteCaretBlink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 0;
-  }
 }
 
 .quoteSpotlightReveal {
@@ -211,7 +189,7 @@
 
   .quoteSpotlightText {
     max-width: 17.4ch;
-    font-size: clamp(2.35rem, 6.25vw, 5rem);
+    font-size: clamp(4rem, 4.35vw, 5rem);
   }
 }
 

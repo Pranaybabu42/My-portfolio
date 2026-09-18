@@ -10,22 +10,27 @@ function NeuralBackground({ reducedMotion }) {
     if (!canvas) return undefined
 
     const ctx = canvas.getContext('2d')
+    if (!ctx) return undefined
     let animationId
     let width = 0
     let height = 0
     let particles = []
+    let lastFrame = 0
+    let isRunning = false
+    let isVisible = false
+    const frameInterval = 1000 / 30
 
     const setSize = () => {
-      width = canvas.parentElement?.offsetWidth ?? window.innerWidth
-      height = canvas.parentElement?.offsetHeight ?? 420
-      const dpr = window.devicePixelRatio || 1
-      canvas.width = width * dpr
-      canvas.height = height * dpr
+      width = canvas.parentElement?.clientWidth || document.documentElement.clientWidth
+      height = canvas.parentElement?.clientHeight || window.innerHeight
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      canvas.width = Math.round(width * dpr)
+      canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
     const createParticles = () => {
-      const particleCount = Math.min(56, Math.max(28, Math.floor(window.innerWidth / 28)))
+      const particleCount = window.innerWidth < 768 ? 18 : Math.min(32, Math.max(22, Math.floor(window.innerWidth / 55)))
       particles = Array.from({ length: particleCount }).map(() => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -37,7 +42,13 @@ function NeuralBackground({ reducedMotion }) {
 
     const lineDistance = 130
 
-    const draw = () => {
+    const draw = (timestamp) => {
+      if (!isRunning) return
+      if (timestamp - lastFrame < frameInterval) {
+        animationId = window.requestAnimationFrame(draw)
+        return
+      }
+      lastFrame = timestamp
       ctx.clearRect(0, 0, width, height)
 
       for (let index = 0; index < particles.length; index += 1) {
@@ -59,9 +70,10 @@ function NeuralBackground({ reducedMotion }) {
           const b = particles[compare]
           const dx = a.x - b.x
           const dy = a.y - b.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
+          const distanceSquared = dx * dx + dy * dy
 
-          if (dist < lineDistance) {
+          if (distanceSquared < lineDistance * lineDistance) {
+            const dist = Math.sqrt(distanceSquared)
             const alpha = 1 - dist / lineDistance
             ctx.beginPath()
             ctx.strokeStyle = `rgba(153,160,171,${alpha * 0.28})`
@@ -78,23 +90,45 @@ function NeuralBackground({ reducedMotion }) {
 
     setSize()
     createParticles()
-    draw()
 
-    const resizeObserver = new ResizeObserver(() => {
+    const handleResize = () => {
       setSize()
       createParticles()
+    }
+
+    const handleVisibilityChange = () => {
+      const shouldRun = isVisible && !document.hidden
+      if (shouldRun === isRunning) return
+      isRunning = shouldRun
+      if (isRunning) {
+        lastFrame = 0
+        animationId = window.requestAnimationFrame(draw)
+      } else {
+        window.cancelAnimationFrame(animationId)
+      }
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting
+      handleVisibilityChange()
     })
-    resizeObserver.observe(canvas.parentElement)
+    observer.observe(canvas)
+
+    window.addEventListener('resize', handleResize, { passive: true })
+    document.addEventListener('visibilitychange', handleVisibilityChange)
 
     return () => {
+      isRunning = false
+      observer.disconnect()
       window.cancelAnimationFrame(animationId)
-      resizeObserver.disconnect()
+      window.removeEventListener('resize', handleResize)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [reducedMotion])
 
   if (reducedMotion) return null
 
-  return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
+  return <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true" />
 }
 
 export default NeuralBackground

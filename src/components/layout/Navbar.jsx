@@ -2,15 +2,15 @@ import { BriefcaseBusiness, Code2, FolderGit2, Mail, UserRound } from 'lucide-re
 import { scrollToSection } from '../../utils/scrollToSection'
 
 const navItems = [
-  { id: 'about', label: 'ABOUT', shortLabel: 'About', icon: UserRound },
-  { id: 'skills', label: 'SKILLS', shortLabel: 'Skills', icon: Code2 },
-  { id: 'experience', label: 'EXPERIENCE', shortLabel: 'Exp', icon: BriefcaseBusiness },
-  { id: 'projects', label: 'PROJECTS', shortLabel: 'Work', icon: FolderGit2 },
-  { id: 'contact', label: 'CONTACT', shortLabel: 'Contact', icon: Mail },
+  { id: 'about', sections: ['about', 'what-i-do'], label: 'ABOUT', shortLabel: 'About', icon: UserRound },
+  { id: 'skills', sections: ['skills'], label: 'SKILLS', shortLabel: 'Skills', icon: Code2 },
+  { id: 'experience', sections: ['history', 'experience'], label: 'EXPERIENCE', shortLabel: 'Exp', icon: BriefcaseBusiness },
+  { id: 'projects', sections: ['projects', 'certificates-awards'], label: 'PROJECTS', shortLabel: 'Work', icon: FolderGit2 },
+  { id: 'contact', sections: ['contact'], label: 'CONTACT', shortLabel: 'Contact', icon: Mail },
 ]
 
 function ArcNavLink({ item, activeSection }) {
-  const active = activeSection === item.id
+  const active = item.sections.includes(activeSection)
 
   return (
     <a
@@ -20,7 +20,7 @@ function ArcNavLink({ item, activeSection }) {
         window.history.replaceState(null, '', `#${item.id}`)
       }}
       className={`nav-arc-link d-inline-flex align-items-center px-0 py-1 text-decoration-none ${
-        active ? 'fw-bold' : 'fw-semibold'
+        active ? 'is-active fw-bold' : 'fw-semibold'
       }`}
       style={{
         fontSize: '0.72rem',
@@ -43,7 +43,7 @@ function Navbar({ activeSection }) {
   const signatureName = 'Pranay Thalluri'
 
   return (
-    <header style={{ zIndex: 80, pointerEvents: 'auto' }}>
+    <header className="entry-navbar" style={{ zIndex: 80, pointerEvents: 'auto' }}>
       <div
         className={`nav-signature-wrap position-fixed top-0 start-0 m-2${activeSection !== 'hero' ? ' is-away-from-hero' : ''}`}
         style={{ zIndex: 80, pointerEvents: 'auto' }}
@@ -79,7 +79,7 @@ function Navbar({ activeSection }) {
       <nav className="mobile-bottom-nav d-md-none" aria-label="Primary mobile navigation">
         {navItems.map((item) => {
           const Icon = item.icon
-          const active = activeSection === item.id
+          const active = item.sections.includes(activeSection)
 
           return (
             <a

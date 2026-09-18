@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Award, BadgeCheck, ExternalLink, Trophy } from 'lucide-react'
+import { BadgeCheck, ExternalLink, Trophy } from 'lucide-react'
 import Modal from '../ui/Modal'
 import './Highlights.css'
 
@@ -25,6 +25,8 @@ function CredentialLink({ href, label }) {
 
 function CertificateCard({ item, index, onOpen }) {
   const title = getCredentialTitle(item)
+  const status = item.status ?? 'Completed'
+  const statusClass = status.toLowerCase().includes('progress') ? 'is-progress' : 'is-completed'
 
   return (
     <button
@@ -37,12 +39,10 @@ function CertificateCard({ item, index, onOpen }) {
         {item.image ? <img src={item.image} alt="" /> : <BadgeCheck size={20} />}
       </span>
       <div className="certAwardContent">
-        <p>{item.issuer}</p>
-        <h3>{title}</h3>
-        <span>{item.year}</span>
+        <h3>{item.issuer}</h3>
       </div>
-      <span className="certAwardLink" aria-hidden="true">
-        <ExternalLink size={15} />
+      <span className={`certStatus ${statusClass}`} aria-label={status}>
+        <span className="certStatusDot" aria-hidden="true" />
       </span>
     </button>
   )
@@ -74,40 +74,50 @@ function AwardCard({ item, index, onOpen }) {
   )
 }
 
+function UpcomingCertification({ item }) {
+  return (
+    <div className="upcomingCertification">
+      <span className="upcomingCertificationStatus" aria-hidden="true" />
+      <div>
+        <strong>{item.title}</strong>
+        <span>{item.issuer}</span>
+      </div>
+      <small>In Progress</small>
+    </div>
+  )
+}
+
 function Highlights({ certifications = [], awards = [] }) {
-  const featuredAward = awards[0]
   const [selectedCredential, setSelectedCredential] = useState(null)
   const selectedTitle = selectedCredential ? getCredentialTitle(selectedCredential) : undefined
+  const completedCertifications = certifications.filter((item) => !item.status?.toLowerCase().includes('progress'))
+  const upcomingCertifications = certifications.filter((item) => item.status?.toLowerCase().includes('progress'))
 
   return (
     <section id="certificates-awards" className="certAwardsSection">
       <div className="certAwardsInner">
         <header className="certAwardsHeader">
-          <span>Certificates & Awards</span>
-          <h2>Proof of practice, progress, and recognized impact.</h2>
+          <h2>Certificates &amp; Awards</h2>
         </header>
 
         <div className="certAwardsLayout">
-          <aside className="certAwardsFeature">
-            <span className="certAwardsFeatureIcon" aria-hidden="true">
-              <Award size={28} />
-            </span>
-            <p>Recognition</p>
-            <h3>{featuredAward?.title ?? 'Award-winning AI delivery'}</h3>
-            <span className="certAwardsFeatureHighlight">By Endava the organizer in the company</span>
-          </aside>
-
           <div className="certAwardsColumns">
             <section className="certAwardsGroup" aria-label="Certifications">
               <div className="certAwardsGroupHeader">
                 <BadgeCheck size={16} />
-                <h3>Certificates</h3>
+                <h3>Certifications</h3>
               </div>
-              <div className="certAwardList">
-                {certifications.map((item, index) => (
+              <div className="certAwardList certificationBadgeList">
+                {completedCertifications.map((item, index) => (
                   <CertificateCard key={getCredentialTitle(item)} item={item} index={index} onOpen={setSelectedCredential} />
                 ))}
               </div>
+              {upcomingCertifications.length > 0 ? (
+                <div className="upcomingCertifications" aria-label="Certifications in progress">
+                  <h4>In Progress</h4>
+                  {upcomingCertifications.map((item) => <UpcomingCertification key={getCredentialTitle(item)} item={item} />)}
+                </div>
+              ) : null}
             </section>
 
             <section className="certAwardsGroup" aria-label="Awards">

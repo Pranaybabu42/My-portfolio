@@ -1,0 +1,54 @@
+html[data-entry-stage="intro"], html[data-entry-stage="universe"],
+html[data-entry-stage="intro"] body, html[data-entry-stage="universe"] body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+html { scrollbar-gutter: stable; }
+.page-loader, .page-intro { position: fixed; inset: 0; height: 100vh; height: 100dvh; background: radial-gradient(ellipse at 50% 45%, #171317, #070707 65%); }
+.page-loader { z-index: 1010; display: grid; place-items: center; align-content: center; gap: 22px; color: #d5c6bd; pointer-events: all; transition: opacity .45s ease, visibility .45s ease; }
+.page-loader__eyebrow { color: #f08a68; font-size: 9px; letter-spacing: .28em; text-align: center; }
+.page-loader__quote { min-height: 1.4em; padding: 0 24px; color: #d5c6bd; font-family: Georgia, serif; font-size: clamp(18px, 2.2vw, 28px); letter-spacing: .04em; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+.page-loader__quote.is-visible { opacity: 1; transform: translateY(0); }
+.page-loader__signal { width: 58px; height: 1px; background: #f08a68; box-shadow: 0 0 16px #f08a68; animation: loader-signal 1.4s ease-in-out infinite; }
+.page-loader__eyebrow, .page-loader__quote, .page-loader__signal { position: relative; z-index: 2; }
+.page-loader__doors { position: absolute; inset: 0; display: flex; overflow: hidden; pointer-events: none; }
+.page-loader__doors i { width: 50%; height: 100%; background: linear-gradient(105deg, #050506 0%, #151217 48%, #08080a 100%); box-shadow: inset 0 0 80px #000, inset 0 0 2px #f08a6822; transform: translateX(0); transition: transform 1.25s cubic-bezier(.77,0,.18,1); }
+.page-loader__doors i:last-child { background: linear-gradient(255deg, #050506 0%, #151217 48%, #08080a 100%); }
+.page-entry[data-open="true"] .page-loader { opacity: 0; visibility: hidden; pointer-events: none; }
+.page-entry[data-ready="true"] .page-loader__doors i:first-child { transform: translateX(-100%); }
+.page-entry[data-ready="true"] .page-loader__doors i:last-child { transform: translateX(100%); }
+.page-intro { z-index: 1000; display: grid; place-items: center; background: transparent; }
+.page-intro[hidden] { display: none; }
+.page-entry[data-loading="true"] .page-intro { visibility: hidden; }
+.page-entry[data-open="true"] .page-intro { visibility: visible; }
+.page-intro__enter { display: grid; justify-items: center; gap: 22px; border: 0; padding: 32px; background: transparent; color: #d5c6bd; font: inherit; font-size: 10px; letter-spacing: .3em; cursor: pointer; }
+.page-intro__enter:focus-visible { outline: 1px solid #f08a68; outline-offset: 8px; }
+.page-intro__arrow { color: #f08a68; font-size: 22px; animation: entry-arrow 1.8s ease-in-out infinite alternate; }
+.page-entry[data-stage="intro"] .entry-portfolio { visibility: hidden; }
+.page-entry[data-stage="universe"] .page-intro { pointer-events: none; }
+.page-entry:not([data-stage="page"]) .app-main > :not(#tech-universe),
+.page-entry:not([data-stage="page"]) .entry-portfolio footer:not(.tech-orbit__footer),
+.page-entry:not([data-stage="page"]) .scroll-to-top { visibility: hidden !important; }
+.page-entry:not([data-stage="page"]):not([data-complete="true"]) .entry-navbar,
+.page-entry:not([data-stage="page"]):not([data-complete="true"]) .entry-navbar *,
+.page-entry:not([data-stage="page"]):not([data-complete="true"]) .social-left-dock { visibility: hidden !important; }
+.page-entry[data-stage="universe"] .entry-portfolio { visibility: visible; }
+@keyframes entry-arrow { to { transform: translateY(8px); } }
+@keyframes loader-signal { 50% { opacity: .35; transform: scaleX(.55); } }
+@media (prefers-reduced-motion: reduce) { .page-intro__arrow { animation: none; } }
+
+@media (max-width: 767px) {
+  .page-intro__enter {
+    max-width: calc(100vw - 2rem);
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    font-size: clamp(0.58rem, 2.5vw, 0.72rem);
+    letter-spacing: 0.2em;
+    text-align: center;
+  }
+
+  .page-intro__arrow {
+    font-size: 1.6rem;
+  }
+}

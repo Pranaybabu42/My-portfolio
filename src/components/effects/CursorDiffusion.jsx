@@ -11,7 +11,7 @@ function CursorDiffusion({ reducedMotion }) {
 
     const ctx = canvas.getContext('2d')
     let animationId
-    let width = window.innerWidth
+    let width = document.documentElement.clientWidth
     let height = window.innerHeight
     let pointerX = width * 0.5
     let pointerY = height * 0.5
@@ -19,15 +19,22 @@ function CursorDiffusion({ reducedMotion }) {
     let lastPointerY = pointerY
     let pointerActive = false
     let lastSpawn = 0
+    let isVisible = !document.hidden
     const webNodes = []
 
     const setSize = () => {
-      width = window.innerWidth
+      width = document.documentElement.clientWidth
       height = window.innerHeight
-      const dpr = window.devicePixelRatio || 1
-      canvas.width = width * dpr
-      canvas.height = height * dpr
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      canvas.width = Math.round(width * dpr)
+      canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+
+    const scheduleDraw = () => {
+      if (!animationId && isVisible) {
+        animationId = window.requestAnimationFrame(draw)
+      }
     }
 
     const spawnWebNode = (x, y) => {
@@ -50,6 +57,7 @@ function CursorDiffusion({ reducedMotion }) {
       pointerX = event.clientX
       pointerY = event.clientY
       pointerActive = true
+      scheduleDraw()
 
       const dx = pointerX - lastPointerX
       const dy = pointerY - lastPointerY
@@ -66,9 +74,11 @@ function CursorDiffusion({ reducedMotion }) {
 
     const onPointerLeave = () => {
       pointerActive = false
+      scheduleDraw()
     }
 
     const draw = () => {
+      animationId = null
       ctx.clearRect(0, 0, width, height)
 
       for (let index = webNodes.length - 1; index >= 0; index -= 1) {
@@ -125,21 +135,37 @@ function CursorDiffusion({ reducedMotion }) {
         ctx.fill()
       }
 
-      animationId = window.requestAnimationFrame(draw)
+      if (webNodes.length > 0) scheduleDraw()
+    }
+
+    const handleResize = () => {
+      setSize()
+      scheduleDraw()
+    }
+
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden
+      if (!isVisible && animationId) {
+        window.cancelAnimationFrame(animationId)
+        animationId = null
+      } else if (isVisible) {
+        scheduleDraw()
+      }
     }
 
     setSize()
-    draw()
 
-    window.addEventListener('resize', setSize)
+    window.addEventListener('resize', handleResize, { passive: true })
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     window.addEventListener('pointerleave', onPointerLeave)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
 
     return () => {
       window.cancelAnimationFrame(animationId)
-      window.removeEventListener('resize', setSize)
+      window.removeEventListener('resize', handleResize)
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('pointerleave', onPointerLeave)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
   }, [reducedMotion])
 

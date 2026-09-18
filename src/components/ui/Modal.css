@@ -1,0 +1,19 @@
+.modal-close-button {
+  display: inline-grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid rgba(240, 138, 104, 0.5);
+  background: rgba(235, 89, 57, 0.14);
+  color: #ffd6c7;
+  cursor: pointer;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus-visible {
+  border-color: #f08a68;
+  background: rgba(235, 89, 57, 0.3);
+  color: #ffffff;
+  outline: 2px solid rgba(240, 138, 104, 0.35);
+  outline-offset: 2px;
+}

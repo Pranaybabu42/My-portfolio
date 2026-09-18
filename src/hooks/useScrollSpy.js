@@ -8,25 +8,42 @@ export function useScrollSpy(sectionIds = []) {
 
     const elements = sectionIds.map((id) => document.getElementById(id)).filter(Boolean)
     if (!elements.length) return undefined
+    let frameId = 0
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+    const updateActiveSection = () => {
+      frameId = 0
+      const activationLine = window.innerHeight * 0.34
+      let currentSection = elements[0].id
 
-        if (visible.length > 0) {
-          setActiveSection(visible[0].target.id)
+      for (const element of elements) {
+        const rect = element.getBoundingClientRect()
+
+        if (rect.top <= activationLine) {
+          currentSection = element.id
         }
-      },
-      {
-        threshold: [0.08, 0.2, 0.35, 0.55],
-        rootMargin: '-12% 0px -58% 0px',
-      },
-    )
 
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+        if (rect.top <= activationLine && rect.bottom > activationLine) {
+          currentSection = element.id
+          break
+        }
+      }
+
+      setActiveSection((current) => current === currentSection ? current : currentSection)
+    }
+
+    const requestUpdate = () => {
+      if (!frameId) frameId = window.requestAnimationFrame(updateActiveSection)
+    }
+
+    updateActiveSection()
+    window.addEventListener('scroll', requestUpdate, { passive: true })
+    window.addEventListener('resize', requestUpdate, { passive: true })
+
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId)
+      window.removeEventListener('scroll', requestUpdate)
+      window.removeEventListener('resize', requestUpdate)
+    }
   }, [sectionIds])
 
   return activeSection

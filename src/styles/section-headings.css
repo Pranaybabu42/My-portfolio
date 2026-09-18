@@ -1,0 +1,30 @@
+/* Keep section labels and headings aligned consistently across the portfolio. */
+.quoteSpotlightEyebrow,
+.skillsHeader,
+.experienceHeader,
+.projectsSectionHeader,
+.certAwardsHeader,
+.contactShowcaseHeader,
+.dev3d-header,
+.whatIDoKicker {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.whatIDoKicker {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.experienceSectionTitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.historyJourney__header {
+  left: 50%;
+  width: min(90%, 48rem);
+  transform: translateX(-50%);
+  text-align: center;
+}

@@ -12,7 +12,7 @@ function SiteBackdrop({ imageSrc, name, fixed = false }) {
         alt={`${name} background portrait`}
         fallbackType="profile"
         className={`${fixed ? 'h-screen w-screen' : 'h-full w-full'} rounded-none border-0 bg-black`}
-        imageClassName="w-full h-full object-contain object-right opacity-[0.49] grayscale brightness-[1.8] contrast-420"
+        imageClassName="site-backdrop-image w-full h-full object-contain object-right opacity-[0.49] grayscale brightness-[1.8]"
       />
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(189, 179, 179, 0.2),transparent_40%)]" />
